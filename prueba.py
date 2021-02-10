@@ -85,11 +85,11 @@ class Arma:
 
 class EspadaOxidada (Arma): 
     def __init__(self):
-        super().__init__(1,1,10, 'EspadaOxidada') #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(1,1,10, 'Espada Oxidada') #(ataque ,velocidad ,defensa, nombre)
 
 class ArcoDeMadera (Arma):   
     def __init__(self):
-        super().__init__(0,4,5, 'ArcoDeMadera')    
+        super().__init__(0,4,5, 'Arco De Madera')    
 
 class Vara (Arma):   
     def __init__(self):
@@ -101,7 +101,7 @@ class Gun (Arma):
 
 class SableDeDios (Arma):    
     def __init__(self):
-        super().__init__(6,30,100, 'Sable')        
+        super().__init__(100,30,1, 'Sable')        
 
 #CLASES#
 class Clase:
@@ -237,7 +237,17 @@ def chooseElemento():
     
      
 
-   
+def chooseArma(clase):
+    if clase=="Guerrero":
+       arma_ = EspadaOxidada()
+    elif clase=="Tirador":
+       arma_ = ArcoDeMadera() 
+    elif clase=="Guerrero":
+       arma_ = Vara() 
+    return arma_       
+
+
+'''
 def chooseArma():
     print("""
 Armas:
@@ -259,7 +269,7 @@ d) Gun
     elif choice == 'd':
         arma_ = Gun()
     return arma_
-
+'''
 ###################################################
 #         ENEMIGOS                                #
 ###################################################
@@ -339,7 +349,10 @@ edad=random.randint(14,18)
 
    
 protaClase=chooseClase()
-protaArma=chooseArma()
+
+clase=protaClase.classnombre
+
+protaArma=chooseArma(clase)
 protaElemento=chooseElemento()
 protaNombre=chooseNombre()
 protaSexo=chooseSexo()
@@ -367,7 +380,9 @@ elif(sexo=="Mujer" and raza=="Enano"):
 
 print(sexo)
 print(pareja)
- 
+
+
+print(protaClase.classnombre) 
 
 '''
 
@@ -386,7 +401,7 @@ enemigo.EnemigoRaza()
 enemigo.printenemigostats() #prints enemigo stats
 
 
-#Combat Section
+#Combates
 
 print('Tu salud actual:', prota._totaldefensa)
 print('Salud actual del enemigo:', enemigo._enemigodefensa) #print prota/enemigo new saluds
@@ -402,11 +417,12 @@ while prota._totaldefensa >0 and enemigo._enemigodefensa >0:
     
 if prota._totaldefensa <0 and enemigo._enemigodefensa <0: 
     print('Empate, mataste a tu enemigo pero muriste en el acto')
+    sys. exit()
 elif prota._totaldefensa >0 and enemigo._enemigodefensa <0: 
     print('Ganaste!')
 else:
     print('Has muerto!')   #Usar para acabar con el script: sys. exit()
-    
+    sys. exit()
 '''
 
 '''
