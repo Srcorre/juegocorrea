@@ -1,4 +1,4 @@
-import time             #importing necessary libraries
+import time             
 import random
 import sys
 
@@ -20,15 +20,15 @@ class Raza:
         return self.nombre
 
 
-class Elfo(Raza): #inherits from race
+class Elfo(Raza): 
     def __init__(self):
         super().__init__(6,6,50, 'Elfo') #(ataque ,velocidad ,defensa, nombre)
 
-class Humano(Raza): #inherits from race
+class Humano(Raza): 
     def __init__(self):
         super().__init__(8,4,70, 'Humano') #(ataque ,velocidad ,defensa, nombre)
 
-class Enano(Raza): #inherits from race
+class Enano(Raza): 
     def __init__(self):  #(a,s,d)
         super().__init__(10,3,90, 'Enano') #(ataque ,velocidad ,defensa, nombre)
 
@@ -52,15 +52,15 @@ class Elemento:
         return self.elementonombre
 
 
-class Fuego(Elemento): #inherits from race
+class Fuego(Elemento): 
     def __init__(self):
         super().__init__(10,0,0, 'Fuego') #(ataque ,velocidad ,defensa, nombre)
 
-class Agua(Elemento): #inherits from race
+class Agua(Elemento): 
     def __init__(self):
         super().__init__(0,0,10, 'Agua') #(ataque ,velocidad ,defensa, nombre)
 
-class Aire(Elemento): #inherits from race
+class Aire(Elemento): 
     def __init__(self):  #(a,s,d)
         super().__init__(0,10,0, 'Aire') #(ataque ,velocidad ,defensa, nombre)
 
@@ -72,7 +72,7 @@ class Arma:
         self.armaataque = ataque
         self.armavelocidad = velocidad
         self.armadefensa = defensa
-        self.armanombre = nombre              #4 attributes of arma class
+        self.armanombre = nombre              
 
     def ReturnArmaAtaque(self):
         return self.armaataque
@@ -83,7 +83,7 @@ class Arma:
     def ReturnArmaNombre(self):
         return self.armanombre
 
-class EspadaOxidada (Arma): #inherits from arma
+class EspadaOxidada (Arma): 
     def __init__(self):
         super().__init__(1,1,10, 'EspadaOxidada') #(ataque ,velocidad ,defensa, nombre)
 
@@ -104,7 +104,7 @@ class SableDeDios (Arma):
         super().__init__(6,30,100, 'Sable')        
 
 #CLASES#
-class ProtaClase:
+class Clase:
     def __init__(self, ataque, velocidad, defensa, nombre):
         self.classataque = ataque
         self.classvelocidad = velocidad
@@ -121,15 +121,15 @@ class ProtaClase:
         return self.classnombre
 
 
-class Guerrero(ProtaClase): #inherits from characterclass     
+class Guerrero(Clase):   
     def __init__(self):
         super().__init__(4,2,-5, 'Guerrero')             #(ataque ,velocidad ,defensa, nombre)
 
-class Tirador(ProtaClase): #inherits from characterclass
+class Tirador(Clase): 
     def __init__(self):
         super().__init__(4,1,0, 'Tirador')            #(ataque ,velocidad ,defensa, nombre)
 
-class Mago(ProtaClase):    #inherits from characterclass
+class Mago(Clase):    
     def __init__(self):
         super().__init__(0,5,10, 'Mago')            #(ataque ,velocidad ,defensa, nombre)
 
@@ -137,24 +137,26 @@ class Mago(ProtaClase):    #inherits from characterclass
 ##
 class Player:
 
-    def __init__(self, protaClase, protaArma, protaElemento):
+    def __init__(self, protaClase, protaArma, protaElemento, protaNombre, protaSexo):
         self._totalataque = 0
         self._totalvelocidad = 0
         self._totaldefensa = 0
         self._protarace = ''
         self._protaclass = protaClase 
         self._protaarma = protaArma
-        self._protaelemento = protaElemento        
+        self._protaelemento = protaElemento
+        self._protanombre = protaNombre
+        self._protasexo = protaSexo       
             
     def chooseRaza(self):
         print("""
 Razas:
-a. Elfo - Ataque: 6, Velocidad: 6, Defensa: 50
-b. Humano - Ataque: 8, Velocidad: 4, Defensa: 70
-c. Enano - Ataque: 10, Velocidad: 3, Defensa: 90
+a) Elfo
+b) Humano
+c) Enano
  """)
         
-        choice = input("Choose a race:")
+        choice = input("Elige una raza:")
         while choice not in ['a','b','c']:      
             choice = input("Intentalo otra vez. (a,b o c)")
         time.sleep(0.5)
@@ -168,23 +170,46 @@ c. Enano - Ataque: 10, Velocidad: 3, Defensa: 90
         self._totalataque += self._protarace.returnAtaque() + self._protaclass.returnClaseAtaque() + self._protaarma.ReturnArmaAtaque() + self._protaelemento.returnElementoAtaque()
         self._totalvelocidad += self._protarace.returnVelocidad() + self._protaclass.returnClaseVelocidad() + self._protaarma.ReturnArmaVelocidad()+ self._protaelemento.returnElementoVelocidad()
         self._totaldefensa += self._protarace.returnDefensa() + self._protaclass.returnClaseDefensa() + self._protaarma.ReturnArmaDefensa()+self._protaelemento.returnElementoDefensa()
+    
+    
 
     def printstats(self):
-        print('\nTu personaje es un', self._protarace.returnNombre(), self._protaclass.returnClaseNombre(), 'con', self._protaarma.ReturnArmaNombre(), self._protaelemento.returnElementoNombre)
+        print('\nTu personaje', self._protanombre,' de genero ',self._protasexo ,'es un', self._protarace.returnNombre(), self._protaclass.returnClaseNombre(), 'con', self._protaarma.ReturnArmaNombre(),' y con el elemento ',self._protaelemento.returnElementoNombre())
         print('Prota Ataque:', self._totalataque)
         print('Prota Velocidad:', self._totalvelocidad)
         print('Prota Defensa:', self._totaldefensa)
-
     
+    def sacarRaza(self):
+        raza=self._protarace.returnNombre()
+        return raza
 
+#NOMBRE    
 
+def chooseNombre():
+    nombre=input("Finalmente solo tienes que ponerle un nombre a tu personaje para empezar tu aventura: ")
+    return nombre
+    
+def chooseSexo():
+    opcion = ' '
+    while not ('a' <= opcion <= 'b'):
+     print("Elige el sexo de tu personaje: ")
+     print("a) Hombre")
+     print("b) Mujer")
+     opcion=str(input("Escoje una opcion: "))
+     if not (opcion == "a" or opcion == "b"):
+      print("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo")
+     if opcion=='a':
+      sexo="Hombre"
+     elif opcion=='b':
+      sexo="Mujer"
+     return sexo
 
 def chooseClase():
     print("""
 Clases:
-a. Guerrero
-b. Tirador
-c. Mago
+a) Guerrero
+b) Tirador
+c) Mago
 """)
     choice = input("Elige una Clase:")
     while choice not in ['a','b','c']:
@@ -198,16 +223,15 @@ c. Mago
         class_ = Mago()
     return class_
 
+#ELEMENTO
+
 def chooseElemento():
-    choice = input("Elige un elemento:")
-    while choice not in ['a','b','c']:
-        choice = input("Intentalo de nuevo con: (a, b o c)")
-    time.sleep(0.5)
-    if choice == 'a':
+    cont=str(random.randint(1,3))
+    if cont == '1':
         elemento_=Fuego()
-    elif choice == 'b':
+    elif cont == '2':
         elemento_=Agua()
-    elif choice == 'c':
+    elif cont == '3':
         elemento_=Aire()
     return elemento_
     
@@ -217,22 +241,22 @@ def chooseElemento():
 def chooseArma():
     print("""
 Armas:
-1. SwordShield - Ataque: 1, Velocidad: 1, Defensa: 10
-2. DualSword - Ataque: 0, Velocidad: 4, Defensa: 5
-3. BowArrow - Ataque: 4, Velocidad: -1, Defensa: -5
-4. Gun - Ataque: 6, Velocidad: -3, Defensa: -10
+a) EspadaOxidada
+b) ArcoDeMadera
+c) Vara
+d) Gun
 """)
     choice = input("Elige un arma:")
-    while choice not in ['1','2','3','4']:
-        choice = input("Intentalo de nuevo con: (1,2,3 or 4)")
+    while choice not in ['a','b','c','d']:
+        choice = input("Intentalo de nuevo con: (a,b,c o d)")
     time.sleep(0.5)
-    if choice == '1':
+    if choice == 'a':
         arma_ = EspadaOxidada()
-    elif choice == '2':
+    elif choice == 'b':
         arma_ = ArcoDeMadera()
-    elif choice == '3':
+    elif choice == 'c':
         arma_ = Vara()
-    elif choice == '4':
+    elif choice == 'd':
         arma_ = Gun()
     return arma_
 
@@ -270,12 +294,12 @@ class Enemigo:
 def enemigoclass():
     classes=[Guerrero(), Mago(), Tirador()]
     enemigoclass = random.choice(classes)
-    return enemigoclass       #randomly picks enemigo class
+    return enemigoclass       
 
 def enemigoarma():
     armas=[EspadaOxidada(), ArcoDeMadera(), Vara(), Gun()]
     enemigoarma = random.choice(armas)
-    return enemigoarma      #randomly picks enemigo arma
+    return enemigoarma      
     
 #LISTAS
 
@@ -285,36 +309,49 @@ listaH_En = ["Volgo", "Agabo", "Borge"]
 listaM_H = ["Luna" , "Joana" , "Vella", "Elicia", "Siraina"]
 listaM_Elf =["Luna", "Veyal", "Shelia", "Maira"]
 listaM_En = [ "Ilga", "Babila", "Davina"]
-'''
-#PAREJA
 
-if(sexo=="hombre" and raza=="humano"):
- pareja=str(random.choice(listaM_H))
-elif(sexo=="mujer" and raza=="humano"):
- pareja=str(random.choice(listaH_H))
- 
-elif(sexo=="hombre" and raza=="elfo"):
- pareja=str(random.choice(listaM_Elf))
-elif(sexo=="mujer" and raza=="elfo"):
- pareja=str(random.choice(listaH_Elf))
- 
-elif(sexo=="hombre" and raza=="enano"):
- pareja=str(random.choice(listaM_En))
-elif(sexo=="mujer" and raza=="enano"):
- pareja=str(random.choice(listaH_En))
+
 '''
 
+   
+'''
+
+
+   
 protaClase=chooseClase()
-protaElemento=chooseElemento()
 protaArma=chooseArma()
-prota=Player(protaClase,protaElemento, protaArma)
+protaElemento=chooseElemento()
+protaNombre=chooseNombre()
+protaSexo=chooseSexo()
+prota=Player(protaClase, protaArma, protaElemento, protaNombre, protaSexo)
 prota.chooseRaza()
 prota.printstats()
+raza=prota.sacarRaza()
+
+#PAREJA
+sexo=protaSexo
+if(sexo=="Hombre" and raza=="Humano"):
+ pareja=str(random.choice(listaM_H))
+elif(sexo=="Mujer" and raza=="Humano"):
+ pareja=str(random.choice(listaH_H))
+ 
+elif(sexo=="Hombre" and raza=="Elfo"):
+ pareja=str(random.choice(listaM_Elf))
+elif(sexo=="Mujer" and raza=="Elfo"):
+ pareja=str(random.choice(listaH_Elf))
+ 
+elif(sexo=="Hombre" and raza=="Enano"):
+ pareja=str(random.choice(listaM_En))
+elif(sexo=="Mujer" and raza=="Enano"):
+ pareja=str(random.choice(listaH_En))
+
+print(sexo)
+print(pareja)
 
 '''
 
 ##################################################################################
-#APARTIR DE AQUI DEJA DE DEFINIR FUNCIONES Y CLASES                              #
+#                                              BATALLAS                          #
 ##################################################################################
 
 protaClase=chooseClase() #gets the protas class
