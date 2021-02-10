@@ -29,7 +29,7 @@ class Humano(Raza):
         super().__init__(8,4,70, 'Humano') #(ataque ,velocidad ,defensa, nombre)
 
 class Enano(Raza): 
-    def __init__(self):  #(a,s,d)
+    def __init__(self): 
         super().__init__(10,3,90, 'Enano') #(ataque ,velocidad ,defensa, nombre)
 
 
@@ -156,9 +156,9 @@ b) Humano
 c) Enano
  """)
         
-        choice = input("Elige una raza:")
+        choice = input("Elige una raza: ")
         while choice not in ['a','b','c']:      
-            choice = input("Intentalo otra vez. (a,b o c)")
+            choice = input("Intentalo otra vez. (a,b o c): ")
         time.sleep(0.5)
         if choice == 'a':
             self._protarace = Elfo()
@@ -197,12 +197,12 @@ def chooseSexo():
      print("b) Mujer")
      opcion=str(input("Escoje una opcion: "))
      if not (opcion == "a" or opcion == "b"):
-      print("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo")
+      print("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo: ")
      if opcion=='a':
       sexo="Hombre"
      elif opcion=='b':
       sexo="Mujer"
-     return sexo
+    return sexo
 
 def chooseClase():
     print("""
@@ -211,9 +211,9 @@ a) Guerrero
 b) Tirador
 c) Mago
 """)
-    choice = input("Elige una Clase:")
+    choice = input("Elige una Clase: ")
     while choice not in ['a','b','c']:
-        choice = input("Intentalo de nuevo con: (a,b o c)")
+        choice = input("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo: ")
     time.sleep(0.5)
     if choice == 'a':
         class_ = Guerrero()
@@ -246,9 +246,9 @@ b) ArcoDeMadera
 c) Vara
 d) Gun
 """)
-    choice = input("Elige un arma:")
+    choice = input("Elige un arma: ")
     while choice not in ['a','b','c','d']:
-        choice = input("Intentalo de nuevo con: (a,b,c o d)")
+        choice = input("Solo puedes escojer una opcion entre a, b, c o d. Intentalo de nuevo: ")
     time.sleep(0.5)
     if choice == 'a':
         arma_ = EspadaOxidada()
@@ -260,9 +260,9 @@ d) Gun
         arma_ = Gun()
     return arma_
 
-
-
-
+###################################################
+#         ENEMIGOS                                #
+###################################################
 class Enemigo:
     def __init__(self, enemigoclass, enemigoarma):
         self._enemigoataque = 0
@@ -311,10 +311,30 @@ listaM_Elf =["Luna", "Veyal", "Shelia", "Maira"]
 listaM_En = [ "Ilga", "Babila", "Davina"]
 
 
-'''
 
-   
-'''
+#MAESTRO   (dividir el argumento de 0 a 2, de 3 a 6 y 7 oculto)
+
+num=random.randint(0,7)
+if num==0:
+  maestro="Vampiro"
+elif num==1:
+  maestro="Cambiapieles"
+elif num==2:
+  maestro="Bandido"
+elif num==3:
+  maestro="Paladin"
+elif num==4:
+  maestro="Pirata"
+elif num==5:
+  maestro="Nomada"
+elif num==6:
+  maestro="Mago"
+elif num==7:
+  mestro="Demonio"  
+  
+#EDAD     (Para llevar referencia del paso del tiempo)
+
+edad=random.randint(14,18)   
 
 
    
@@ -347,6 +367,7 @@ elif(sexo=="Mujer" and raza=="Enano"):
 
 print(sexo)
 print(pareja)
+ 
 
 '''
 
@@ -354,12 +375,7 @@ print(pareja)
 #                                              BATALLAS                          #
 ##################################################################################
 
-protaClase=chooseClase() #gets the protas class
-protaArma=chooseArma() #gets the protas arma
 
-prota=Player(protaClase, protaArma) #prota is object of player class
-prota.chooseRaza() #prota choosses player race
-prota.printstats() #prints protas stats
 
 
 enemigoclass = enemigoclass() #gets enemigo class
@@ -371,9 +387,7 @@ enemigo.printenemigostats() #prints enemigo stats
 
 
 #Combat Section
-numbers = [1,2,3,4,5]
-prota._totaldefensa = prota._totaldefensa*random.choice(numbers) #randomly multiplies salud of prota and enemigo by 1-5
-enemigo._enemigodefensa = enemigo._enemigodefensa*random.choice(numbers) #randomly multiplies salud of prota and enemigo by 1-5
+
 print('Tu salud actual:', prota._totaldefensa)
 print('Salud actual del enemigo:', enemigo._enemigodefensa) #print prota/enemigo new saluds
 print('El combate comienza...')
@@ -395,3 +409,13 @@ else:
     
 '''
 
+'''
+###################################################################################
+#                                HISTORIA                                         #
+###################################################################################
+
+print("Habia una vez un ",raza," llamado ", nombre, "que vivia en una pequeña ciudad llamada Argonia. Era un lugar tranquilo y apacible dirigido por un Señor Feudal considerado perfecto")
+print('Alli ',nombre, ' conocio a:', pareja, ' con la cual crecio desde su mas tierna infacia')
+print("En la escuela militar aprendio y acabo volviendose un buen ", clase, "y gracias a la prueba del papel descubrio que su elemento principal era el ", elemento)
+
+'''
