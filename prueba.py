@@ -452,7 +452,7 @@ print('Siguiente combate')
 print(type(enemigoclass))
 time.sleep(3)
 
-prota.Curar()
+prota.Curar()                                           #Cura al personaje principal
 enemigoraza= EnemigoRaza()                              #saca el arma del enemigo
 enemigoclass = Enemigoclass()                           #saca la clase del enemigo
 claseEn= enemigoclass.classnombre                       #mete la clase del enemigo en una variable para sacar el arma
@@ -463,16 +463,16 @@ enemigo.printenemigostats()                             #saca las stats del enem
 
 
 print('Tu salud actual:', prota._totaldefensa)
-print('Salud actual del enemigo:', enemigo._enemigodefensa) #print prota/enemigo new saluds
+print('Salud actual del enemigo:', enemigo._enemigodefensa)                     #print prota/enemigo new saluds
 print('El combate comienza...')
 time.sleep(1)
 
 while prota._totaldefensa >0 and enemigo._enemigodefensa >0:
-    prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad) #prota salud - (enemigo velocidad * enemigo ataque)
-    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad) #enemigo salud - (prota velocidad * prota ataque)
+    prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad)   #prota salud - (enemigo velocidad * enemigo ataque)
+    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad)       #enemigo salud - (prota velocidad * prota ataque)
     print('Tu Salud ', prota._totaldefensa)
     print('Salud del enemigo ', enemigo._enemigodefensa, '\n')
-    time.sleep(1) #wait a second till the next turn
+    time.sleep(1)
     
 if prota._totaldefensa <0 and enemigo._enemigodefensa <0: 
     print('Empate, mataste a tu enemigo pero muriste en el acto')
@@ -490,25 +490,25 @@ else:
 ##################################################################################
 
 
-enemigoraza= EnemigoRaza()
-enemigoclass = Enemigoclass() #gets enemigo class
-claseEn= enemigoclass.classnombre
-enemigoarma = Enemigoarma(claseEn) #gets enemigo arma
-enemigo=Enemigo(enemigoraza, enemigoclass, enemigoarma) #aggregation takes place
-enemigo.CalculoPoderEnemigo()
-enemigo.printenemigostats() #prints enemigo stats
+enemigoraza= EnemigoRaza()                              #saca el arma del enemigo
+enemigoclass = Enemigoclass()                           #saca la clase del enemigo
+claseEn= enemigoclass.classnombre                       #mete la clase del enemigo en una variable para sacar el arma
+enemigoarma = Enemigoarma(claseEn)                      #saca el arma del enemigo
+enemigo=Enemigo(enemigoraza, enemigoclass, enemigoarma) #agrega la raza, la clase y el arma al enemigo
+enemigo.CalculoPoderEnemigo()                           #calcula el poder total del enemigo
+enemigo.printenemigostats()                             #saca las stats del enemigo
 
 
 
 
 print('Tu salud actual:', prota._totaldefensa)
-print('Salud actual del enemigo:', enemigo._enemigodefensa) #print prota/enemigo new saluds
+print('Salud actual del enemigo:', enemigo._enemigodefensa)                   #print prota/enemigo new saluds
 print('El combate comienza...')
 time.sleep(1)
 
 while prota._totaldefensa >0 and enemigo._enemigodefensa >0:
     prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad) #prota salud - (enemigo velocidad * enemigo ataque)
-    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad) #enemigo salud - (prota velocidad * prota ataque)
+    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad)     #enemigo salud - (prota velocidad * prota ataque)
     print('Tu Salud ', prota._totaldefensa)
     print('Salud del enemigo ', enemigo._enemigodefensa, '\n')
     time.sleep(1) #wait a second till the next turn
@@ -527,29 +527,27 @@ print('Siguiente combate')
 print(type(enemigoclass))
 time.sleep(3)
 
-prota.Curar()
-
-
-enemigoraza= EnemigoRaza()
-enemigoclass = Enemigoclass() #gets enemigo class
-claseEn= enemigoclass.classnombre
-enemigoarma = Enemigoarma(claseEn) #gets enemigo arma
-enemigo=Enemigo(enemigoraza, enemigoclass, enemigoarma) #aggregation takes place
-enemigo.CalculoPoderEnemigo()
-enemigo.printenemigostats() #prints enemigo stats
+prota.Curar()                                           #Cura al personaje principal
+enemigoraza= EnemigoRaza()                              #saca el arma del enemigo
+enemigoclass = Enemigoclass()                           #saca la clase del enemigo
+claseEn= enemigoclass.classnombre                       #mete la clase del enemigo en una variable para sacar el arma
+enemigoarma = Enemigoarma(claseEn)                      #saca el arma del enemigo
+enemigo=Enemigo(enemigoraza, enemigoclass, enemigoarma) #agrega la raza, la clase y el arma al enemigo
+enemigo.CalculoPoderEnemigo()                           #calcula el poder total del enemigo
+enemigo.printenemigostats()                             #saca las stats del enemigo
 
 
 print('Tu salud actual:', prota._totaldefensa)
-print('Salud actual del enemigo:', enemigo._enemigodefensa) #print prota/enemigo new saluds
+print('Salud actual del enemigo:', enemigo._enemigodefensa)                     #print prota/enemigo new saluds
 print('El combate comienza...')
 time.sleep(1)
 
 while prota._totaldefensa >0 and enemigo._enemigodefensa >0:
-    prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad) #prota salud - (enemigo velocidad * enemigo ataque)
-    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad) #enemigo salud - (prota velocidad * prota ataque)
+    prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad)   #prota salud - (enemigo velocidad * enemigo ataque)
+    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad)       #enemigo salud - (prota velocidad * prota ataque)
     print('Tu Salud ', prota._totaldefensa)
     print('Salud del enemigo ', enemigo._enemigodefensa, '\n')
-    time.sleep(1) #wait a second till the next turn
+    time.sleep(1)
     
 if prota._totaldefensa <0 and enemigo._enemigodefensa <0: 
     print('Empate, mataste a tu enemigo pero muriste en el acto')
