@@ -22,25 +22,40 @@ class Raza:
 
 class Elfo(Raza): 
     def __init__(self):
-        super().__init__(6,6,50, 'Elfo') #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(6,6,50, 'Elfo')    #(ataque ,velocidad ,defensa, nombre)
 
 class Humano(Raza): 
     def __init__(self):
-        super().__init__(8,4,70, 'Humano') #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(8,4,70, 'Humano')  
 
 class Enano(Raza): 
     def __init__(self): 
-        super().__init__(10,3,90, 'Enano') #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(10,3,90, 'Enano')  
 
+class Goblin(Raza): 
+    def __init__(self): 
+        super().__init__(10,3,90, 'Goblin') 
+
+class Demonio(Raza): 
+    def __init__(self): 
+        super().__init__(100000,1000,1000000, 'Demonio') 
+
+class Dios(Raza): 
+    def __init__(self): 
+        super().__init__(100000,1000,1000000, 'Dios') 
+        
+class Vampiro(Raza):                                     #NOMBRE TODAVIA NO CLARO
+    def __init__(self): 
+        super().__init__(100000,1000,1000000, 'Vampiro') 
 
 #ELEMENTO
 
 class Elemento:
-    def __init__(self, ataque, velocidad, defensa, nombre):   #element class
+    def __init__(self, ataque, velocidad, defensa, nombre):   #clase elemento
         self.elementoataque = ataque
         self.elementovelocidad = velocidad
         self.elementodefensa = defensa
-        self.elementonombre = nombre                    #4 attributes of element class
+        self.elementonombre = nombre                    #4 attributes
 
     def returnElementoAtaque(self):
         return self.elementoataque
@@ -58,11 +73,11 @@ class Fuego(Elemento):
 
 class Agua(Elemento): 
     def __init__(self):
-        super().__init__(0,0,10, 'Agua') #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(0,0,10, 'Agua') 
 
 class Aire(Elemento): 
     def __init__(self):  #(a,s,d)
-        super().__init__(0,10,0, 'Aire') #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(0,10,0, 'Aire') 
 
  
 
@@ -89,15 +104,19 @@ class EspadaOxidada (Arma):
 
 class ArcoDeMadera (Arma):   
     def __init__(self):
-        super().__init__(0,4,5, 'Arco De Madera')    
+        super().__init__(0,4,5, 'Arco de Madera')    
 
-class Vara (Arma):   
+class VaraDeMadera (Arma):   
     def __init__(self):
-        super().__init__(4,-1,-5, 'Vara')   
+        super().__init__(4,-1,-5, 'Vara de Madera')   
     
-class Gun (Arma):         
+class Garrote (Arma):         
     def __init__(self):
-        super().__init__(6,-3,-10, 'Gun')     
+        super().__init__(6,-3,-10, 'Garrote')
+
+class Tirachinas (Arma):         
+    def __init__(self):
+        super().__init__(2,5,-10, 'Tirachinas')          
 
 class SableDeDios (Arma):    
     def __init__(self):
@@ -123,18 +142,18 @@ class Clase:
 
 class Guerrero(Clase):   
     def __init__(self):
-        super().__init__(4,2,-5, 'Guerrero')             #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(4,2,-5, 'Guerrero')          
 
 class Tirador(Clase): 
     def __init__(self):
-        super().__init__(4,1,0, 'Tirador')            #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(4,1,0, 'Tirador')          
 
 class Mago(Clase):    
     def __init__(self):
-        super().__init__(0,5,10, 'Mago')            #(ataque ,velocidad ,defensa, nombre)
+        super().__init__(0,5,10, 'Mago')            
 
 
-##
+                                                                                    #JUGADOR#
 class Player:
 
     def __init__(self, protaRaza ,protaClase, protaArma, protaElemento, protaNombre, protaSexo):
@@ -156,7 +175,7 @@ class Player:
     
 
     def printstats(self):
-        print('\nTu personaje', self._protanombre,' de genero ',self._protasexo ,'es un', self._protarace.returnNombre(), self._protaclass.returnClaseNombre(), 'con', self._protaarma.ReturnArmaNombre(),' y con el elemento ',self._protaelemento.returnElementoNombre())
+        print('\nTu personaje', self._protanombre.title(),' de genero ',self._protasexo ,'es un', self._protarace.returnNombre(), self._protaclass.returnClaseNombre(), 'con', self._protaarma.ReturnArmaNombre(),' y con el elemento ',self._protaelemento.returnElementoNombre())
         print('Prota Ataque:', self._totalataque)
         print('Prota Velocidad:', self._totalvelocidad)
         print('Prota Defensa:', self._totaldefensa)
@@ -172,7 +191,7 @@ class Player:
 #NOMBRE    
 
 def chooseNombre():
-    nombre=input("Finalmente solo tienes que ponerle un nombre a tu personaje para empezar tu aventura: ")
+    nombre=input("Ponle un nombre a tu personaje: ")
     return nombre
     
 def chooseSexo():
@@ -250,7 +269,7 @@ def chooseArma(clase):
     elif clase=="Tirador":
        arma_ = ArcoDeMadera() 
     elif clase=="Mago":
-       arma_ = Vara() 
+       arma_ = VaraDeMadera() 
     return arma_       
 
 
@@ -296,8 +315,6 @@ class Enemigo:
         
 
     def printenemigostats(self):
-        #print('\nGenerating a random enemigo...')
-        #time.sleep(1)
         print('\nEl enemigo es:', self._enemigorace.returnNombre(), self._enemigoclass.returnClaseNombre(), 'armado con', self._enemigoarma.ReturnArmaNombre())
         print('Ataque del enemigo:', self._enemigoataque)
         print('Velocidad del enemigo:', self._enemigovelocidad)
@@ -305,7 +322,7 @@ class Enemigo:
         time.sleep(1)
 
 def EnemigoRaza():
-        races=[Elfo(), Humano(), Enano()]
+        races=[Elfo(), Humano(), Enano(), Goblin()]
         eraza = random.choice(races)
         return eraza
   
@@ -317,11 +334,13 @@ def Enemigoclass():
 def Enemigoarma(eclase):
     global earma_
     if eclase=="Guerrero":
-       earma_ = EspadaOxidada()
+       LGarma=[EspadaOxidada(), Garrote()]
+       earma_ = random.choice(LGarma)
     elif eclase=="Tirador":
-       earma_ = ArcoDeMadera() 
+       LTarma=[Tirachinas(), ArcoDeMadera()]
+       earma_ = random.choice(LTarma)
     elif eclase=="Mago":
-       earma_ = Vara() 
+       earma_ = VaraDeMadera() 
     return earma_        
     
 #LISTAS
@@ -359,7 +378,8 @@ elif num==7:
 
 edad=random.randint(14,18)   
 
-
+titulo = "bienvenido al mundo de XXXXXXXX".capitalize() 
+print (titulo.center(100, "=")) 
 protaRaza=chooseRaza()   
 protaClase=chooseClase()
 clase=protaClase.classnombre
@@ -395,14 +415,79 @@ print(pareja)
 
 print(protaClase.classnombre) 
 
+enemigoraza= EnemigoRaza()                              #saca el arma del enemigo
+enemigoclass = Enemigoclass()                           #saca la clase del enemigo
+claseEn= enemigoclass.classnombre                       #mete la clase del enemigo en una variable para sacar el arma
+enemigoarma = Enemigoarma(claseEn)                      #saca el arma del enemigo
+enemigo=Enemigo(enemigoraza, enemigoclass, enemigoarma) #agrega la raza, la clase y el arma al enemigo
+enemigo.CalculoPoderEnemigo()                           #calcula el poder total del enemigo
+enemigo.printenemigostats()                             #saca las stats del enemigo
 
+
+
+
+print('Tu salud actual:', prota._totaldefensa)
+print('Salud actual del enemigo:', enemigo._enemigodefensa)                   #print prota/enemigo new saluds
+print('El combate comienza...')
+time.sleep(1)
+
+while prota._totaldefensa >0 and enemigo._enemigodefensa >0:
+    prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad) #prota salud - (enemigo velocidad * enemigo ataque)
+    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad)     #enemigo salud - (prota velocidad * prota ataque)
+    print('Tu Salud ', prota._totaldefensa)
+    print('Salud del enemigo ', enemigo._enemigodefensa, '\n')
+    time.sleep(1) #wait a second till the next turn
+    
+if prota._totaldefensa <0 and enemigo._enemigodefensa <0: 
+    print('Empate, mataste a tu enemigo pero muriste en el acto')
+    sys. exit()
+elif prota._totaldefensa >0 and enemigo._enemigodefensa <0: 
+    print('Ganaste!')
+else:
+    print('Has muerto!')   #Usar para acabar con el script: sys. exit()
+    sys. exit()
+    
+time.sleep(2)
+print('Siguiente combate')
+print(type(enemigoclass))
+time.sleep(3)
+
+prota.Curar()
+enemigoraza= EnemigoRaza()                              #saca el arma del enemigo
+enemigoclass = Enemigoclass()                           #saca la clase del enemigo
+claseEn= enemigoclass.classnombre                       #mete la clase del enemigo en una variable para sacar el arma
+enemigoarma = Enemigoarma(claseEn)                      #saca el arma del enemigo
+enemigo=Enemigo(enemigoraza, enemigoclass, enemigoarma) #agrega la raza, la clase y el arma al enemigo
+enemigo.CalculoPoderEnemigo()                           #calcula el poder total del enemigo
+enemigo.printenemigostats()                             #saca las stats del enemigo
+
+
+print('Tu salud actual:', prota._totaldefensa)
+print('Salud actual del enemigo:', enemigo._enemigodefensa) #print prota/enemigo new saluds
+print('El combate comienza...')
+time.sleep(1)
+
+while prota._totaldefensa >0 and enemigo._enemigodefensa >0:
+    prota._totaldefensa -= (enemigo._enemigoataque*enemigo._enemigovelocidad) #prota salud - (enemigo velocidad * enemigo ataque)
+    enemigo._enemigodefensa -= (prota._totalataque*prota._totalvelocidad) #enemigo salud - (prota velocidad * prota ataque)
+    print('Tu Salud ', prota._totaldefensa)
+    print('Salud del enemigo ', enemigo._enemigodefensa, '\n')
+    time.sleep(1) #wait a second till the next turn
+    
+if prota._totaldefensa <0 and enemigo._enemigodefensa <0: 
+    print('Empate, mataste a tu enemigo pero muriste en el acto')
+    sys. exit()
+elif prota._totaldefensa >0 and enemigo._enemigodefensa <0: 
+    print('Ganaste!')
+else:
+    print('Has muerto!')   #Usar para acabar con el script: sys. exit()
+    sys. exit()
 
 '''
 
 ##################################################################################
 #                                              BATALLAS                          #
 ##################################################################################
-
 
 
 enemigoraza= EnemigoRaza()
