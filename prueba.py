@@ -170,39 +170,13 @@ class Player:
         self._totaldefensa += self._protarace.returnDefensa() + self._protaclass.returnClaseDefensa() + self._protaarma.ReturnArmaDefensa()+self._protaelemento.returnElementoDefensa()
 
 #NOMBRE    
-
-def chooseNombre():
-    nombre=input("Finalmente solo tienes que ponerle un nombre a tu personaje para empezar tu aventura: ")
-    return nombre
-    
-def chooseSexo():
-    opcion = ' '
-    while not ('a' <= opcion <= 'b'):
-     print("Elige el sexo de tu personaje: ")
-     print("a) Hombre")
-     print("b) Mujer")
-     opcion=str(input("Escoje una opcion: "))
-     if not (opcion == "a" or opcion == "b"):
-      print("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo: ")
-     if opcion=='a':
-      sexo="Hombre"
-     elif opcion=='b':
-      sexo="Mujer"
-    return sexo
-
+# Crear Personaje   
 
 def chooseRaza():
-        print("""
-Razas:
-a) Elfo
-b) Humano
-c) Enano
- """)
-        
-        choice = input("Elige una raza: ")
-        while choice not in ['a','b','c']:      
-            choice = input("Intentalo otra vez. (a,b o c): ")
-        time.sleep(0.5)
+        print('Elige una raza: \na) Elfo \nb) Humano \nc) Enano')
+        choice = input("> ")
+        while choice.lower() not in ['a','b','c']:      
+            choice = input("Opcion invalida. Prueba otra vez: \n>  ")
         if choice == 'a':
             raza_ = Elfo()
         elif choice == 'b':
@@ -211,17 +185,33 @@ c) Enano
             raza_ = Enano()
         return raza_
 
+
+def chooseSexo():
+	print("Elige el sexo de tu personaje: \na) Hombre \nb) Mujer \n") 
+	while True:
+		opcion = input("> ")
+		if opcion.lower() == 'a':
+			sexo = 'Hombre'
+			break
+		elif opcion.lower() == 'b':
+			sexo = 'Mujer'
+			break
+		else:
+			print('Opcion invalida, prueba otra vez')
+	return sexo
+
+
+def chooseNombre():
+    nombre=input("Cual es tu nombre? \n> ")
+    return nombre
+
+
+
 def chooseClase():
-    print("""
-Clases:
-a) Guerrero
-b) Tirador
-c) Mago
-""")
-    choice = input("Elige una Clase: ")
-    while choice not in ['a','b','c']:
-        choice = input("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo: ")
-    time.sleep(0.5)
+    print('Elige una Clase: \na) Guerrero \nb) Tirador \nc) Mago')
+    choice = input("> ")
+    while choice.lower() not in ['a','b','c']:      
+        choice = input("Solo puedes escojer una opcion entre a, b o c. Intentalo de nuevo:\n>  ")
     if choice == 'a':
         class_ = Guerrero()
     elif choice == 'b':
@@ -229,6 +219,8 @@ c) Mago
     elif choice == 'c':
         class_ = Mago()
     return class_
+
+
 
 #ELEMENTO
 
