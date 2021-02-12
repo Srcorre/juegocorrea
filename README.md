@@ -1,3 +1,3 @@
-# juegocorrea que menuda movida 
+# Organizar la estructura del juego en esta rama antes de juntarlo con la original.
 
-Probar cambios en esta rama
+Probar cambios aqui. Mejor separar todo por partes para juntarlo luego.
